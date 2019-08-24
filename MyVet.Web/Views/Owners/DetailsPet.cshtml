@@ -110,7 +110,8 @@ else
     </table>
 }
 
-@*<partial name="_DeleteDialog" />
+<partial name="_DeleteDialog" />
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -127,4 +128,4 @@ else
             });
         });
     </script>
-}*@
+}
