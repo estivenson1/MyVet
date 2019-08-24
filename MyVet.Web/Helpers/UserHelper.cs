@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿
+using Microsoft.AspNetCore.Identity;
 using MyVet.Web.Data.Entities;
 using MyVet.Web.Models;
 using System.Threading.Tasks;
@@ -65,6 +66,31 @@ namespace MyVet.Web.Helpers
         public async Task LogoutAsync()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task<bool> DeleteUserAsync(string email)
+        {
+            var user = await GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return true;
+            }
+
+            var response = await _userManager.DeleteAsync(user);
+            return response.Succeeded;
+        }
+
+        public async Task<IdentityResult> UpdateUserAsync(User user)
+        {
+            return await _userManager.UpdateAsync(user);
+        }
+
+        public async Task<SignInResult> ValidatePasswordAsync(User user, string password)
+        {
+            return await _signInManager.CheckPasswordSignInAsync(
+                user,
+                password,
+                false);
         }
     }
 }
