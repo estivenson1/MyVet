@@ -1,4 +1,5 @@
-﻿using MyVet.Web.Data.Entities;
+﻿
+using MyVet.Web.Data.Entities;
 using MyVet.Web.Helpers;
 using System;
 using System.Linq;
@@ -24,11 +25,28 @@ namespace MyVet.Web.Data
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRoles();
             var manager = await CheckUserAsync("1010", "Juan", "Zuluaga", "jzuluaga55@gmail.com", "350 634 2747", "Calle Luna Calle Sol", "Admin");
-            var customer = await CheckUserAsync("2020", "Juan", "Zuluaga", "jzuluaga55@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", "Customer");
+            var manager2 = await CheckUserAsync("1011", "Estivenson", "Ortega Villar", "estivenson@vet.com", "350 634 2747", "Calle Luna Calle Sol 1", "Admin");
+            var manager3 = await CheckUserAsync("1012", "Guillermo", "Coronel", "guillermo@vet.com", "350 634 2747", "Calle Luna Calle Sol 2", "Admin");
+            var manager4 = await CheckUserAsync("1013", "Alba", "Ponto", "alba@vet.com", "350 634 2747", "Calle Luna Calle Sol 3", "Admin");
+
+            var customer2 = await CheckUserAsync("2020", "Juan", "Zuluaga", "jzuluaga55@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", "Customer");
+            var customer = await CheckUserAsync("2021", "Ever", "Valdes", "ever@vet.com", "350 634 2747", "Calle Luna Calle Sol 2", "Customer");
+            var customer3 = await CheckUserAsync("2022", "Fabian", "Blanco", "fabian@vet.com", "350 634 2747", "Calle Luna Calle Sol 3", "Customer");
+            var customer4 = await CheckUserAsync("2023", "Jose", "Coronel2", "jose@vet.com", "350 634 2747", "Calle Luna Calle Sol 4", "Customer");
+
             await CheckPetTypesAsync();
             await CheckServiceTypesAsync();
+
             await CheckOwnerAsync(customer);
+            await CheckOwnerAsync(customer2);
+            await CheckOwnerAsync(customer3);
+            await CheckOwnerAsync(customer4);
+
             await CheckManagerAsync(manager);
+            await CheckManagerAsync(manager2);
+            await CheckManagerAsync(manager3);
+            await CheckManagerAsync(manager4);
+
             await CheckPetsAsync();
             await CheckAgendasAsync();
         }
