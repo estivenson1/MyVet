@@ -1,14 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyVet.Common.Models;
-//using MyVet.Common.Models;
 using MyVet.Web.Data;
 
 namespace MyVet.Web.Controllers.API

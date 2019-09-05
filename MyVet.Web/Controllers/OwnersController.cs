@@ -170,7 +170,7 @@ namespace MyVet.Web.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeleteOwner(int? id)
         {
             if (id == null)
             {
@@ -180,15 +180,16 @@ namespace MyVet.Web.Controllers
             var owner = await _dataContext.Owners
                 .Include(o => o.User)
                 .Include(o => o.Pets)
-                .FirstOrDefaultAsync(o => o.Id == id);
+                .Include(o => o.Agendas)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (owner == null)
             {
                 return NotFound();
             }
 
-            if (owner.Pets.Count > 0)
+            if (owner.Pets.Count > 0 || owner.Agendas.Count > 0)
             {
-                //TODO: Message
+                //TODO: message with toast
                 return RedirectToAction(nameof(Index));
             }
 
@@ -411,6 +412,7 @@ namespace MyVet.Web.Controllers
 
             var pet = await _dataContext.Pets
                 .Include(p => p.Owner)
+                .Include(p => p.Agendas)
                 .Include(p => p.Histories)
                 .FirstOrDefaultAsync(p => p.Id == id.Value);
             if (pet == null)
@@ -418,7 +420,7 @@ namespace MyVet.Web.Controllers
                 return NotFound();
             }
 
-            if (pet.Histories.Count > 0)
+            if (pet.Histories.Count > 0 || pet.Agendas.Count > 0)
             {
                 ModelState.AddModelError(string.Empty, "The pet can't be deleted because it has related records.");
                 return RedirectToAction($"{nameof(Details)}/{pet.Owner.Id}");
