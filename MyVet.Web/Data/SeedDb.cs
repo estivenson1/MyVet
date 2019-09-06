@@ -1,5 +1,4 @@
-﻿
-using MyVet.Web.Data.Entities;
+﻿using MyVet.Web.Data.Entities;
 using MyVet.Web.Helpers;
 using System;
 using System.Linq;
@@ -24,29 +23,23 @@ namespace MyVet.Web.Data
         {
             await _dataContext.Database.EnsureCreatedAsync();
             await CheckRoles();
-            //var manager = await CheckUserAsync("1010", "Juan", "Zuluaga", "jzuluaga55@gmail.com", "350 634 2747", "Calle Luna Calle Sol", "Admin");
-            var manager2 = await CheckUserAsync("1011", "Estivenson", "Ortega Villar", "estivenson@vet.com", "3017915843", "Manga 23#75, Cartagena", "Admin");
-            //var manager3 = await CheckUserAsync("1012", "Guillermo", "Coronel", "guillermo@vet.com", "350 634 2747", "Calle Luna Calle Sol 2", "Admin");
-            //var manager4 = await CheckUserAsync("1013", "Alba", "Ponto", "alba@vet.com", "350 634 2747", "Calle Luna Calle Sol 3", "Admin");
+            var manager =  await CheckUserAsync("1010", "Estivenson", "Ortega Villar", "estivenson1@hotmail.com", "301 791 5843", "Bocagrande, Cartagena", "Admin");
+            var manager2 = await CheckUserAsync("1011", "Jose", "Perez Blanco", "jose@hotmail.com", "315 333 5843", "Manga, Cartagena", "Admin");
+            var manager3 = await CheckUserAsync("1012", "AdminX", "Administrador", "admin@hotmail.com", "300 222 5555", "Olaya, Cartagena", "Admin");
 
-            //var customer2 = await CheckUserAsync("2020", "Juan", "Zuluaga", "jzuluaga55@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", "Customer");
-            var customer = await CheckUserAsync("2021", "Ever", "Valdes", "ever@vet.com", "300 634 2747", "Centro, Cartagena", "Customer");
-            var customer3 = await CheckUserAsync("2022", "Fabian", "Blanco", "fabian@vet.com", "315 634 2747", "Crespo, Cartagena", "Customer");
-            var customer4 = await CheckUserAsync("2023", "Jose", "Coronel2", "jose@vet.com", "310 634 2747", "Turbaco, Bolivar", "Customer");
-
+            var customer = await  CheckUserAsync("2020", "Ever", "Villar", "ever@hotmail.com", "300 300 0001", "Bocagrande, Cartagena", "Customer");
+            //var customer2 = await CheckUserAsync("2021", "Maria", "Blanco", "maria@hotmail.com", "300 300 0002", "Manga, Cartagena", "Customer");
+            //var customer3 = await CheckUserAsync("2022", "Elkin", "Perez", "elkin@hotmail.com", "300 300 0003", "centro, Cartagena", "Customer");
+            //var customer4 = await CheckUserAsync("2023", "Kely", "Juana", "kely@hotmail.com", "300 300 0004", "Los Alpres, Cartagena", "Customer");
             await CheckPetTypesAsync();
             await CheckServiceTypesAsync();
-
             await CheckOwnerAsync(customer);
             //await CheckOwnerAsync(customer2);
-            await CheckOwnerAsync(customer3);
-            await CheckOwnerAsync(customer4);
-
-            //await CheckManagerAsync(manager);
+            //await CheckOwnerAsync(customer3);
+            //await CheckOwnerAsync(customer4);
+            await CheckManagerAsync(manager);
             await CheckManagerAsync(manager2);
-            //await CheckManagerAsync(manager3);
-            //await CheckManagerAsync(manager4);
-
+            await CheckManagerAsync(manager3);
             await CheckPetsAsync();
             await CheckAgendasAsync();
         }
