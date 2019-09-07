@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
 namespace MyVet.Common.Models
 {
@@ -19,5 +20,7 @@ namespace MyVet.Common.Models
         public string Email { get; set; }
 
         public ICollection<PetResponse> Pets { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
     }
 }
