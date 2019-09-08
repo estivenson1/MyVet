@@ -2,7 +2,7 @@
 
 namespace MyVet.Prism.Views
 {
-    public partial class PetTabbedPage : ContentPage
+    public partial class PetTabbedPage : TabbedPage
     {
         public PetTabbedPage()
         {
